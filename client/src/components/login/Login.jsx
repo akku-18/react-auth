@@ -23,7 +23,6 @@ export default function Login( { setLoginUser } ) {
     axios
       .post("http://localhost:9002/login", user)
       .then((res) => {
-        alert(res.data.message)
         setLoginUser(res.data.user);
         navigate('/');
       });
