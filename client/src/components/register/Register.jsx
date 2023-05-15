@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./register.css";
+import { useNavigate } from 'react-router-dom';
 
 export default function Register() {
   const [user, setUser] = useState({
@@ -9,6 +10,8 @@ export default function Register() {
     password: "",
     reEnterPassword: "",
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,7 +26,10 @@ export default function Register() {
     const { name, email, password, reEnterPassword } = user;
     if (name && email && password && password === reEnterPassword) {
       axios.post("http://localhost:9002/register", user)
-      .then(res => console.log(res))
+      .then(res => {
+        alert(res.data.message)
+        navigate('/login')
+      })
     }else{
       alert("Invalid input")
     }
@@ -64,7 +70,7 @@ export default function Register() {
         Register
       </div>
       <div>or</div>
-      <div className="button">Login</div>
+      <div className="button" onClick={() => navigate('/login')}>Login</div>
     </div>
   );
 }

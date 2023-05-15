@@ -51,7 +51,7 @@ app.post("/register", (req, res) => {
       const user = new User({ name: name, email: email, password: password });
       user
         .save()
-        .then(() =>  res.send({ message: "Registration successful" }))
+        .then(() =>  res.send({ message: "Registration successful! Please login now" }))
         .catch((e) => res.send(e));
     }
   });
